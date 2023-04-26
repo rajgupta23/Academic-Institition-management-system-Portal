@@ -1,0 +1,532 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > student</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: student (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">student</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75.2%
+  </span>
+  <span class="absValue">
+    (206/274)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.ResultSet;
+&nbsp;import java.sql.Statement;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.Vector;
+&nbsp;
+<b class="fc">&nbsp;public class student extends user{</b>
+&nbsp;    String name,email,mobile,dept;
+&nbsp;    int entryYear;
+<b class="fc">&nbsp;    tables t2 = new tables();</b>
+<b class="fc">&nbsp;    Connection con = t2.getConnection();</b>
+&nbsp;    public short changePassword(String newPass){
+<b class="fc">&nbsp;        this.password = newPass;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;update students set password = &#39;%s&#39; where username = &#39;%s&#39;&quot;,newPass,this.userName);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            statement.executeUpdate(query);</b>
+<b class="fc">&nbsp;            return 1;</b>
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;    public short changeMobile(String newMobile){
+<b class="fc">&nbsp;        this.mobile = newMobile;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;update students set mobile = &#39;%s&#39; where username = &#39;%s&#39;&quot;,newMobile,this.userName);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            statement.executeUpdate(query);</b>
+<b class="fc">&nbsp;            return 1;</b>
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;    public short assignStudentDetail(){
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from students where username = &#39;%s&#39;&quot;, this.userName);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            Integer tt = 0;</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                tt++;</b>
+<b class="fc">&nbsp;                System.out.println(rs.getString(&quot;email&quot;));</b>
+<b class="fc">&nbsp;                this.name = rs.getString(&quot;name&quot;);</b>
+<b class="fc">&nbsp;                this.email = rs.getString(&quot;email&quot;);</b>
+<b class="fc">&nbsp;                this.mobile = rs.getString(&quot;mobile&quot;);</b>
+<b class="fc">&nbsp;                this.dept = rs.getString(&quot;dept&quot;);</b>
+<b class="fc">&nbsp;                this.entryYear = Integer.parseInt(rs.getString(&quot;entryyear&quot;));</b>
+&nbsp;            }
+&nbsp;//            System.out.println(tt);
+<b class="fc">&nbsp;            return 1;</b>
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;    public double getCredits(int year,int sem){
+<b class="fc">&nbsp;        double ret = 0;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseTaken where studentid = &#39;%s&#39; and year = %d and semester = %d&quot;, this.userName,year,sem);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            int tt = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                tt++;</b>
+<b class="fc">&nbsp;                ret += Double.parseDouble(rs.getString(&quot;credit&quot;));</b>
+&nbsp;            }
+&nbsp;//            System.out.println(tt);
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println(e);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;    public double getGradePoint(int year,int sem){
+<b class="fc">&nbsp;        double ret = 0;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseTaken where studentid = &#39;%s&#39; and year = %d and semester = %d&quot;, this.userName,year,sem);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                ret = ret + Double.parseDouble(rs.getString(&quot;credit&quot;)) * Double.parseDouble(rs.getString(&quot;gradepoint&quot;));</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getCurrentSemCredits(){
+<b class="fc">&nbsp;        double ret = 0;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from enroling where studentusername = &#39;%s&#39; and year = %d and semester = %d&quot;, this.userName,shared.currentYear,shared.currentSemester);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            int tt = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                tt++;</b>
+<b class="fc">&nbsp;                ret += Double.parseDouble(rs.getString(&quot;credit&quot;));</b>
+&nbsp;            }
+&nbsp;//            System.out.println(tt);
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public short addCourse1(String courseCode){
+<b class="fc">&nbsp;        String batches=&quot;&quot;,depts=&quot;&quot;,coursesPreReq = &quot;&quot;,facultyUName=&quot;&quot;;</b>
+<b class="fc">&nbsp;        double credit = 0,cg = 0 ,cgpaReq = 0,creditsAlreadyEnrolledFor = getCurrentSemCredits();</b>
+<b class="fc">&nbsp;        boolean courseAvailableInThisSem = false,batchCheck = false,creditLimitCheck = false,cgpaCheck = false,coursesPreReqCheck = false,deptCheck = false, finalCheck = false;</b>
+&nbsp;
+&nbsp;        try{
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseOffering where courseid = &#39;%s&#39; and year = %d and semester = %d&quot;, courseCode, shared.currentYear,shared.currentSemester);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                courseAvailableInThisSem = true;</b>
+<b class="fc">&nbsp;                batches = batches + rs.getString(&quot;batch&quot;);</b>
+<b class="fc">&nbsp;                depts = depts + rs.getString(&quot;dept&quot;);</b>
+<b class="fc">&nbsp;                coursesPreReq+=rs.getString(&quot;courseprereq&quot;);</b>
+<b class="fc">&nbsp;                facultyUName+=rs.getString(&quot;facultyusername&quot;);</b>
+<b class="fc">&nbsp;                credit = Double.parseDouble(rs.getString(&quot;c&quot;));</b>
+<b class="fc">&nbsp;                cgpaReq =  Double.parseDouble(rs.getString(&quot;cgpareq&quot;));</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        String[] batchArr = batches.split(&quot;,&quot;);</b>
+<b class="fc">&nbsp;        String[] deptArr = depts.split(&quot;,&quot;);</b>
+<b class="fc">&nbsp;        if(!courseAvailableInThisSem){</b>
+<b class="fc">&nbsp;            System.out.println(&quot;course is not available to be enrolled in&quot;);</b>
+<b class="fc">&nbsp;            return 0;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        for (String x:batchArr)if(Integer.parseInt(x) == this.entryYear)batchCheck=true;</b>
+<b class="fc">&nbsp;        for (String x:deptArr)</b>
+<b class="fc">&nbsp;            if (x.equals(this.dept)) {</b>
+<b class="fc">&nbsp;                deptCheck = true;</b>
+<b class="fc">&nbsp;                break;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        if(checkCoursesPreReq(coursesPreReq)){</b>
+<b class="fc">&nbsp;            coursesPreReqCheck = true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(&quot;CurrentSemCredits = &quot; + creditsAlreadyEnrolledFor);</b>
+&nbsp;
+<b class="fc">&nbsp;        if(creditsAlreadyEnrolledFor + credit &lt;= getCreditLimit())creditLimitCheck = true;</b>
+&nbsp;
+<b class="fc">&nbsp;        if((cg = cgpa())&gt;=cgpaReq)cgpaCheck = true;</b>
+<b class="fc">&nbsp;        System.out.println(&quot;cg = &quot; + cg);</b>
+<b class="fc">&nbsp;        if(!courseAvailableInThisSem){</b>
+<b class="nc">&nbsp;            System.out.println(&quot;This course is not available in this year-semester you will able to add it once any prof offers it. :( &quot;);</b>
+<b class="fc">&nbsp;        } else if(!batchCheck){</b>
+<b class="nc">&nbsp;            System.out.printf(&quot;This course is not available for batch %d :( %n&quot;, this.entryYear);</b>
+<b class="fc">&nbsp;        }else if(!deptCheck){</b>
+<b class="nc">&nbsp;            System.out.printf(&quot;This course is not available for dept &#39;%s&#39; :( %n&quot;, this.dept);</b>
+<b class="fc">&nbsp;        } else if (!coursesPreReqCheck) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;you are not satisfying course&#39;s pre requisites :( &quot;);</b>
+<b class="fc">&nbsp;        } else if (creditLimitCheck) {</b>
+<b class="nc">&nbsp;            System.out.printf(&quot;credit limit exceeded you&#39;ve enrolled in %,.2f credits of courses but your credit limit is %,.2f :( %n&quot;, creditsAlreadyEnrolledFor,getCreditLimit());</b>
+<b class="fc">&nbsp;        } else if (!cgpaCheck) {</b>
+<b class="nc">&nbsp;            System.out.printf(&quot;you are not satisfying cgpa requirement, your cgpa = %f but required is %,.2f :( %n&quot;, cg,cgpaReq);</b>
+<b class="fc">&nbsp;        } else if (hasTakenThisCourse(courseCode)) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;You already have done this course with a passing grade :) &quot;);</b>
+&nbsp;
+&nbsp;        } else{
+<b class="fc">&nbsp;            finalCheck = true;</b>
+<b class="fc">&nbsp;            System.out.println(&quot;finalcheck = &quot; + finalCheck);</b>
+&nbsp;
+&nbsp;            try{
+<b class="fc">&nbsp;                String query = String.format(&quot;insert into enroling(courseid,credit,year,semester,facultyusername,studentusername)values(&#39;%s&#39;,%f,%d,%d,&#39;%s&#39;,&#39;%s&#39;)&quot;, courseCode,credit,shared.currentYear, shared.currentSemester,facultyUName,this.userName);</b>
+<b class="fc">&nbsp;                Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;                statement.executeUpdate(query);</b>
+<b class="fc">&nbsp;                System.out.println(&quot;you have been enrolled in course &quot;+ courseCode);</b>
+<b class="fc">&nbsp;                return 1;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            catch (Exception e){</b>
+<b class="nc">&nbsp;                System.out.println(e);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getCreditLimit(){
+&nbsp;        double creditsLimit;
+<b class="fc">&nbsp;        if(shared.currentYear==this.entryYear)creditsLimit = 18; // first 2 sems has maximum 18 credits limit.</b>
+&nbsp;        else {
+<b class="fc">&nbsp;            int prevYear = shared.currentYear -1;</b>
+<b class="fc">&nbsp;            if(shared.currentSemester == 1){ // mansoon sem</b>
+<b class="fc">&nbsp;                creditsLimit = 1.25*(getCredits(prevYear,1) + getCredits(prevYear,2))/2;</b>
+&nbsp;            }else{ // winter sem
+<b class="nc">&nbsp;                creditsLimit = 1.25*(getCredits(prevYear ,2) + getCredits(shared.currentYear ,1))/2;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return creditsLimit;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean checkCoursesPreReq(String preReqCourses){ // with non F grade
+<b class="fc">&nbsp;        String[] x = preReqCourses.split(&quot;,&quot;);</b>
+<b class="fc">&nbsp;        Arrays.sort(x);</b>
+<b class="fc">&nbsp;        String ret=&quot;&quot;;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseTaken where studentid = &#39;%s&#39; and gradepoint&lt;&gt;0&quot;, this.userName);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            int tt = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                if(tt!=0)</b>
+<b class="nc">&nbsp;                ret +=&quot;,&quot;+ rs.getString(&quot;courseid&quot;) ;</b>
+&nbsp;                else {
+<b class="fc">&nbsp;                    ret += rs.getString(&quot;courseid&quot;) ;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                tt++;</b>
+&nbsp;            }
+&nbsp;//            System.out.println(tt);
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        System.out.println(&quot;Courses completed without F = &quot; + ret);</b>
+&nbsp;
+<b class="fc">&nbsp;        String[] y = ret.split(&quot;,&quot;);</b>
+<b class="fc">&nbsp;        Arrays.sort(y);</b>
+&nbsp;//        System.out.println(Arrays.equals(x,y));
+<b class="fc">&nbsp;        int f = 0;</b>
+<b class="fc">&nbsp;        for(String a:x){</b>
+<b class="nc">&nbsp;            for(String b:y){</b>
+<b class="nc">&nbsp;                if(a.equals(b)) f++;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(f +&quot;  &quot; + x.length);</b>
+<b class="fc">&nbsp;        return (f==x.length);</b>
+&nbsp;//        return Arrays.equals(x,y);
+&nbsp;    }
+&nbsp;
+&nbsp;    public double cgpa(){
+<b class="fc">&nbsp;        double totalCredits = 0,totalGradepoint=0;</b>
+<b class="fc">&nbsp;        if(shared.currentSemester==1){</b>
+&nbsp;
+<b class="fc">&nbsp;            for(int y = this.entryYear;y&lt;shared.currentYear;y++) {</b>
+<b class="fc">&nbsp;                totalCredits += getCredits(y, 1) + getCredits(y, 2);</b>
+<b class="fc">&nbsp;                totalGradepoint  += getGradePoint(y, 1) + getGradePoint(y, 2);</b>
+&nbsp;            }
+&nbsp;        }else{
+&nbsp;
+<b class="fc">&nbsp;            for(int y = this.entryYear;y&lt;shared.currentYear;y++){</b>
+<b class="fc">&nbsp;                totalCredits+= getCredits(y,1)+getCredits(y,2);</b>
+<b class="fc">&nbsp;                totalGradepoint += getGradePoint(y,1) + getGradePoint(y,2);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            totalCredits+=getCredits(shared.currentYear,1);</b>
+<b class="fc">&nbsp;            totalGradepoint+=getGradePoint(shared.currentYear,1);</b>
+&nbsp;
+&nbsp;        }
+<b class="fc">&nbsp;        System.out.println(this.entryYear);</b>
+<b class="fc">&nbsp;        System.out.println(&quot;totalCredits = &quot; + totalCredits +  &quot;  totalGradepoint = &quot;  + totalGradepoint);</b>
+<b class="fc">&nbsp;        double ret = (totalCredits==0)?0:totalGradepoint/totalCredits;</b>
+<b class="fc">&nbsp;        System.out.println(&quot;cgpa = &quot; + ret);</b>
+<b class="fc">&nbsp;        return ret;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean hasTakenThisCourse(String courseCode){
+<b class="fc">&nbsp;        int tt = 0;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseTaken where (studentid = &#39;%s&#39;) and (courseid = &#39;%s&#39;)and ( year &lt;&gt; %d or (year = %d and semester &lt;&gt;%d) ) and (gradepoint&lt;&gt;%d) &quot;,this.userName,courseCode,shared.currentSemester,shared.currentSemester,shared.currentSemester,0);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="nc">&nbsp;                tt++;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return  tt!=0;</b>
+&nbsp;    }
+&nbsp;    public void dropCourse(String courseCode){// to drop it must be in enroling table.
+<b class="fc">&nbsp;        int tt = 0;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from enroling where studentusername = &#39;%s&#39; and courseid = &#39;%s&#39; and year = %d and semester = %d&quot;, this.userName,courseCode, shared.currentYear,shared.currentSemester);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+&nbsp;
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                tt++;</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println();</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        System.out.println(tt);</b>
+<b class="fc">&nbsp;        if(tt!=0){</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                String query = String.format(&quot;delete from enroling where studentusername = &#39;%s&#39; and courseid = &#39;%s&#39; and year = %d and semester = %d&quot;, this.userName,courseCode, shared.currentYear,shared.currentSemester);</b>
+<b class="fc">&nbsp;                Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;                statement.executeUpdate(query);</b>
+<b class="fc">&nbsp;                System.out.println(&quot;you have dropped the course &quot; + courseCode);</b>
+<b class="nc">&nbsp;            } catch (Exception e){</b>
+<b class="nc">&nbsp;                System.out.println();</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        } else{
+<b class="fc">&nbsp;            System.out.println(&quot;You&#39;ve not enrolled for this course :)&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;    public short showCourses(){ // all course available in this semester
+<b class="fc">&nbsp;        System.out.println(&quot;courseid | coursename  | l | t | p |  c  | facultyusername | facultyname | year | semester | courseprereq | cgpareq |   batch   | dept&quot;);</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseOffering where year = %d and semester = %d&quot;, shared.currentYear,shared.currentSemester);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                System.out.println(rs.getString(&quot;courseid&quot;) + &quot; | &quot; + rs.getString(&quot;coursename&quot;) +&quot; | &quot; + rs.getString(&quot;l&quot;) +&quot; | &quot; + rs.getString(&quot;t&quot;) +&quot; | &quot; + rs.getString(&quot;p&quot;) +&quot; | &quot; + rs.getString(&quot;c&quot;) +&quot; | &quot; + rs.getString(&quot;facultyusername&quot;) +&quot; | &quot; + rs.getString(&quot;facultyname&quot;) +&quot; | &quot; + rs.getString(&quot;year&quot;) +&quot; | &quot; + rs.getString(&quot;semester&quot;) + &quot; | &quot; + rs.getString(&quot;courseprereq&quot;) +&quot; | &quot; + rs.getString(&quot;cgpareq&quot;) +&quot; | &quot; + rs.getString(&quot;batch&quot;) +&quot; | &quot; + rs.getString(&quot;dept&quot;));</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return 1;</b>
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void getGrades(){
+<b class="fc">&nbsp;        double ret = 0;</b>
+<b class="fc">&nbsp;        System.out.println( &quot;courseid | credit | gradepoint&quot;);</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from coursetaken where studentid = &#39;%s&#39;&quot;, this.userName);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                System.out.println(rs.getString(&quot;courseid&quot;) + &quot; | &quot; + rs.getString(&quot;credit&quot;) + &quot; | &quot; + rs.getString(&quot;gradepoint&quot;));</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        double cg = cgpa();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void haveIPassed(){
+<b class="fc">&nbsp;        Vector&lt;String&gt; coreCoursesNeedsToBeCompleted = new Vector&lt;String&gt;();</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from corecourses%d where dept = &#39;%s&#39;&quot;,this.entryYear, this.dept);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            while (rs.next()){</b>
+&nbsp;//                System.out.println(rs.getString(&quot;courseid&quot;) + &quot; | &quot; + rs.getString(&quot;credit&quot;));
+<b class="fc">&nbsp;                coreCoursesNeedsToBeCompleted.add(rs.getString(&quot;courseid&quot;));</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+<b class="nc">&nbsp;            System.out.println(e);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        String ret=&quot;&quot;;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            tables t2 = new tables();</b>
+<b class="fc">&nbsp;            Connection con = t2.getConnection();</b>
+<b class="fc">&nbsp;            String query = String.format(&quot;select * from courseTaken where studentid = &#39;%s&#39; and gradepoint&lt;&gt;0&quot;, this.userName);</b>
+<b class="fc">&nbsp;            Statement statement = con.createStatement();</b>
+<b class="fc">&nbsp;            ResultSet rs = statement.executeQuery(query);</b>
+<b class="fc">&nbsp;            Integer tt = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;            while (rs.next()){</b>
+<b class="fc">&nbsp;                if(tt!=0)</b>
+<b class="fc">&nbsp;                    ret +=&quot;,&quot;+ rs.getString(&quot;courseid&quot;) ;</b>
+&nbsp;                else {
+<b class="fc">&nbsp;                    ret += rs.getString(&quot;courseid&quot;) ;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                tt++;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e){</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println(e);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;//        System.out.println(&quot;Courses completed without F = &quot; + ret);
+&nbsp;
+<b class="fc">&nbsp;        String[] completedCourses = ret.split(&quot;,&quot;);</b>
+<b class="fc">&nbsp;        int cnt = 0;</b>
+<b class="fc">&nbsp;        for(String x:coreCoursesNeedsToBeCompleted){</b>
+<b class="fc">&nbsp;            for(String y:completedCourses){</b>
+<b class="fc">&nbsp;                if(x.equals(y)){</b>
+<b class="fc">&nbsp;                    cnt++;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        System.out.println(cnt);</b>
+<b class="fc">&nbsp;        if(cnt==coreCoursesNeedsToBeCompleted.size()){</b>
+<b class="nc">&nbsp;            System.out.println(&quot;completed core/mandatory courses&quot;);</b>
+<b class="nc">&nbsp;            double totalCredits = 0,totalGradepoint=0;</b>
+<b class="nc">&nbsp;            if(shared.currentSemester==1){</b>
+&nbsp;
+<b class="nc">&nbsp;                for(int y = this.entryYear;y&lt;shared.currentYear;y++) {</b>
+<b class="nc">&nbsp;                    totalCredits += getCredits(y, 1) + getCredits(y, 2);</b>
+<b class="nc">&nbsp;                    totalGradepoint  += getGradePoint(y, 1) + getGradePoint(y, 2);</b>
+&nbsp;                }
+&nbsp;            }else{
+&nbsp;
+<b class="nc">&nbsp;                for(int y = this.entryYear;y&lt;shared.currentYear;y++){</b>
+<b class="nc">&nbsp;                    totalCredits+= getCredits(y,1)+getCredits(y,2);</b>
+<b class="nc">&nbsp;                    totalGradepoint += getGradePoint(y,1) + getGradePoint(y,2);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                totalCredits+=getCredits(shared.currentYear,1);</b>
+<b class="nc">&nbsp;                totalGradepoint+=getGradePoint(shared.currentYear,1);</b>
+&nbsp;
+&nbsp;            }
+<b class="nc">&nbsp;            System.out.println(this.entryYear);</b>
+<b class="nc">&nbsp;            double ret1 = (totalCredits==0)?0:totalGradepoint/totalCredits;</b>
+<b class="nc">&nbsp;            System.out.println(&quot;totalCredits = &quot; + totalCredits +  &quot; totalGradepoint &quot;  + totalGradepoint);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;cgpa = &quot; + ret1);</b>
+&nbsp;
+<b class="nc">&nbsp;            if(totalCredits&gt;=shared.minNoOfCreditsReqToGraduate){</b>
+<b class="nc">&nbsp;                System.out.println(&quot;you have passed all the mandatory/core courses and total min credits required to graduate B-tech&quot;);</b>
+&nbsp;            } else{
+<b class="nc">&nbsp;                System.out.println(&quot;no you haven&#39;t completed min credit to complete graduation&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }else{</b>
+<b class="fc">&nbsp;            System.out.println(&quot;not completed core/mandatory courses&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-09 17:18</div>
+</div>
+</body>
+</html>

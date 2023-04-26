@@ -1,0 +1,380 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > user</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: user (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">user</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.2%
+  </span>
+  <span class="absValue">
+    (205/235)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.util.Locale;
+&nbsp;import java.util.Scanner;
+&nbsp;
+<b class="fc">&nbsp;public class user {</b>
+&nbsp;    String userName,password;
+&nbsp;    int type;
+<b class="fc">&nbsp;    Scanner scanner = new Scanner(System.in);</b>
+&nbsp;    public void loginIntoType(){
+<b class="fc">&nbsp;        String userType = null;</b>
+<b class="fc">&nbsp;        if(type ==1)userType = &quot;student&quot;;</b>
+<b class="fc">&nbsp;        if(type ==2)userType = &quot;faculty&quot;;</b>
+<b class="fc">&nbsp;        if(type ==3)userType = &quot;admin&quot;;</b>
+<b class="fc">&nbsp;        login log = new login();</b>
+<b class="fc">&nbsp;         boolean flag =  log.auth(this.type,this.userName,this.password);</b>
+<b class="fc">&nbsp;         if(flag){</b>
+<b class="fc">&nbsp;             System.out.println(String.format(&quot;logged in as a %s&quot;,userType));</b>
+<b class="fc">&nbsp;             if(type ==1){</b>
+<b class="fc">&nbsp;                 student st = new student();</b>
+<b class="fc">&nbsp;                 st.userName = this.userName;</b>
+<b class="fc">&nbsp;                 st.password = this.password;</b>
+<b class="fc">&nbsp;                 st.assignStudentDetail();</b>
+&nbsp;                 while(true) {
+<b class="fc">&nbsp;                     System.out.println(&quot;\npress 1: to Add course\npress 2: to drop course\npress 3: to See grades\npress4: to see courses being offered in this semester \npress 5: to edit profile \npress 6: have i passed \npress 7: logout&quot;);</b>
+<b class="fc">&nbsp;                     int workToDo = scanner.nextInt();</b>
+<b class="fc">&nbsp;                     if (workToDo == 1) { //add</b>
+<b class="fc">&nbsp;                         if(shared.addDropOpen){</b>
+<b class="fc">&nbsp;                             System.out.println(&quot;Enter course code of the course you want to enrol in&quot;);</b>
+<b class="fc">&nbsp;                             String courseCode = scanner.next();</b>
+<b class="fc">&nbsp;                             st.addCourse1(courseCode.toLowerCase());</b>
+<b class="fc">&nbsp;                         } else{</b>
+<b class="nc">&nbsp;                             System.out.println(&quot;admin hasn&#39;t started the add-drop-course-date yet ;/ &quot;);</b>
+&nbsp;                         }
+&nbsp;
+<b class="fc">&nbsp;                     } else if (workToDo == 2) {</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter course code of the course you want to drop from&quot;);</b>
+<b class="fc">&nbsp;                         String courseCode = scanner.next();</b>
+<b class="fc">&nbsp;                         st.dropCourse(courseCode.toLowerCase());</b>
+<b class="fc">&nbsp;                     } else if (workToDo == 3) {</b>
+<b class="fc">&nbsp;                         st.getGrades();</b>
+<b class="fc">&nbsp;                     } else if (workToDo == 4) {</b>
+<b class="fc">&nbsp;                         if(shared.semStarted) {</b>
+<b class="fc">&nbsp;                             st.showCourses();</b>
+&nbsp;                         } else {
+<b class="nc">&nbsp;                             System.out.println(&quot;Semester is not started yet ;/ &quot;);</b>
+&nbsp;                         }
+<b class="fc">&nbsp;                     } else if (workToDo == 5) {</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;press 1: to change password\npress 2: to change mobile\npress 3: to exit from edit profile&quot;);</b>
+&nbsp;                         while (true) {
+<b class="fc">&nbsp;                             int type11 = scanner.nextInt();</b>
+<b class="fc">&nbsp;                             if (type11 == 1) {</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Type new password&quot;);</b>
+<b class="fc">&nbsp;                                 String xx = scanner.next();</b>
+<b class="fc">&nbsp;                                 st.changePassword(xx);</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Password Changed&quot;);</b>
+<b class="fc">&nbsp;                                 break;</b>
+<b class="fc">&nbsp;                             } else if (type11 == 2) {</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Type new mobile&quot;);</b>
+<b class="fc">&nbsp;                                 String xx = scanner.next();</b>
+<b class="fc">&nbsp;                                 st.changeMobile(xx);</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Mobile Changed&quot;);</b>
+<b class="fc">&nbsp;                                 break;</b>
+<b class="fc">&nbsp;                             } else if(type11 == 3){</b>
+<b class="fc">&nbsp;                                 break;</b>
+<b class="nc">&nbsp;                             }else System.out.println(&quot;please type again :( &quot;);</b>
+<b class="nc">&nbsp;                         }</b>
+<b class="fc">&nbsp;                     }else if(workToDo==6) {</b>
+<b class="fc">&nbsp;                         st.haveIPassed();</b>
+<b class="fc">&nbsp;                     } else if (workToDo ==7) {</b>
+<b class="fc">&nbsp;                         break;</b>
+<b class="nc">&nbsp;                     } else System.out.println(&quot;please type again :( &quot;);</b>
+<b class="fc">&nbsp;                 }</b>
+&nbsp;
+<b class="fc">&nbsp;             } else if (type == 2) {</b>
+<b class="fc">&nbsp;                 faculty ft = new faculty();</b>
+<b class="fc">&nbsp;                 ft.userName = this.userName;</b>
+<b class="fc">&nbsp;                 ft.password = this.password;</b>
+<b class="fc">&nbsp;                 ft.assignFacultyDetail();</b>
+&nbsp;                 while(true) {
+<b class="fc">&nbsp;                     System.out.println(&quot;\npress 1: to offer a course\npress 2: to cancel course\npress 3: to See grades\npress 4: to see courses being offered in this semester\npress 5: to edit profile \npress 6: give grades for a course\n press 7 : to logout&quot;);</b>
+<b class="fc">&nbsp;                     int workToDo = scanner.nextInt();</b>
+<b class="fc">&nbsp;                     if (workToDo == 1) {</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter course code of the course you want to offer&quot;);</b>
+<b class="fc">&nbsp;                         String courseCode = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter batches eligible for the course like &#39;2020,2021&#39; or &#39;2022&#39; without quotes . &#39;Make sure if there are more than one batch eligible please write them comma separated without space after or before commas&#39;&quot;);</b>
+<b class="fc">&nbsp;                         String batchesEligible = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter departments eligible for the course like &#39;cs,ee&#39; or &#39;cs&#39; without quotes . &#39;Make sure if there are more than one departments eligible please write them comma separated without space after or before commas&#39;&quot;);</b>
+<b class="fc">&nbsp;                         String deptEligible = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Please enter cgpa criteria for students like 7.5 &quot;);</b>
+<b class="fc">&nbsp;                         String cgpReq = scanner.next();</b>
+<b class="fc">&nbsp;                         ft.offerCourse(courseCode.toLowerCase(),batchesEligible,deptEligible.toLowerCase(),Double.parseDouble(cgpReq));</b>
+<b class="fc">&nbsp;                     } else if (workToDo == 2) {</b>
+<b class="nc">&nbsp;                         System.out.println(&quot;Enter course code of the course you want to cancel&quot;);</b>
+<b class="nc">&nbsp;                         String courseCode = scanner.next();</b>
+<b class="nc">&nbsp;                         ft.cancelOffering(courseCode.toLowerCase());</b>
+<b class="nc">&nbsp;                     } else if (workToDo == 3) {</b>
+<b class="nc">&nbsp;                         System.out.println(&quot;enter username/entryNumber of the student you want to see grades&quot;);</b>
+<b class="nc">&nbsp;                         String stUname = scanner.next();</b>
+<b class="nc">&nbsp;                         ft.getGrades(stUname.toLowerCase());</b>
+&nbsp;
+<b class="nc">&nbsp;                     } else if (workToDo == 4) {</b>
+<b class="fc">&nbsp;                         if(shared.semStarted) {</b>
+<b class="fc">&nbsp;                             ft.showCourses();</b>
+&nbsp;                         }else{
+<b class="nc">&nbsp;                             System.out.println(&quot;semester is not started yet&quot;);</b>
+&nbsp;                         }
+<b class="fc">&nbsp;                     } else if (workToDo == 5) {</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;press 1: to change password\npress 2: to change mobile\npress 3: to exit from edit profile&quot;);</b>
+&nbsp;                         while (true) {
+<b class="fc">&nbsp;                             int type11 = scanner.nextInt();</b>
+<b class="fc">&nbsp;                             if (type11 == 1) {</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Type new password&quot;);</b>
+<b class="fc">&nbsp;                                 String xx = scanner.next();</b>
+<b class="fc">&nbsp;                                 ft.changePassword(xx);</b>
+<b class="fc">&nbsp;                                 break;</b>
+<b class="fc">&nbsp;                             } else if (type11 == 2) {</b>
+&nbsp;
+<b class="fc">&nbsp;                                 System.out.println(&quot;Type new mobile&quot;);</b>
+<b class="fc">&nbsp;                                 String xx = scanner.next();</b>
+<b class="fc">&nbsp;                                 ft.changeMobile(xx);</b>
+<b class="fc">&nbsp;                                 break;</b>
+<b class="nc">&nbsp;                             }else if(type11==3){</b>
+<b class="nc">&nbsp;                                 break;</b>
+&nbsp;                             }else {
+<b class="nc">&nbsp;                                 System.out.println(&quot;please type again&quot;);</b>
+&nbsp;                             }
+<b class="nc">&nbsp;                         }</b>
+&nbsp;                     }
+<b class="fc">&nbsp;                     else if(workToDo==6) {</b>
+<b class="fc">&nbsp;                         if(shared.GradeSubmissionAllowed) {</b>
+<b class="fc">&nbsp;                             System.out.println(&quot;enter the course code of the course you want to give grades for&quot;);</b>
+<b class="fc">&nbsp;                             String courseid = scanner.next();</b>
+<b class="fc">&nbsp;                             System.out.println(&quot;enter filepath&quot;);</b>
+<b class="fc">&nbsp;                             String path = scanner.next();</b>
+<b class="fc">&nbsp;                             ft.giveGrades(courseid.toLowerCase(), path);</b>
+<b class="fc">&nbsp;                         }else System.out.println(&quot;admin hasn&#39;t started grade submission in calender&quot;);</b>
+<b class="fc">&nbsp;                     } else if (workToDo ==7) {</b>
+<b class="fc">&nbsp;                         break;</b>
+<b class="nc">&nbsp;                     } else System.out.println(&quot;please type again :( &quot;);</b>
+<b class="fc">&nbsp;                 }</b>
+&nbsp;
+<b class="fc">&nbsp;             } else {</b>
+<b class="fc">&nbsp;                 admin ad = new admin();</b>
+<b class="fc">&nbsp;                 ad.userName = this.userName;</b>
+<b class="fc">&nbsp;                 ad.password = this.password;</b>
+<b class="fc">&nbsp;                 ad.assignAdminDetail();</b>
+&nbsp;                 while(true){
+<b class="fc">&nbsp;                     System.out.println(&quot;\npress 1: to Add a Student\npress 2: to Add a faculty\npress 3: for other admin work\npress 4: logout&quot;);</b>
+<b class="fc">&nbsp;                     int workToDo = scanner.nextInt();</b>
+<b class="fc">&nbsp;                     if (workToDo == 1) {</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter name of student&quot;);</b>
+<b class="fc">&nbsp;                         String name = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter user name/entry no of student &#39;&#39;Ps - It has to be unique&#39;&#39;&quot;);</b>
+<b class="fc">&nbsp;                         String userName = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter email of student&quot;);</b>
+<b class="fc">&nbsp;                         String email = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter password of student&quot;);</b>
+<b class="fc">&nbsp;                         String password = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter mobile of student&quot;);</b>
+<b class="fc">&nbsp;                         String mobile = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter entry year of student&quot;);</b>
+<b class="fc">&nbsp;                         String entryYear = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter Department(ee,cs,ch,me etc) of student&quot;);</b>
+<b class="fc">&nbsp;                         String dept = scanner.next();</b>
+<b class="fc">&nbsp;                         ad.addStudent(name, userName.toLowerCase(), email, password, mobile, Integer.parseInt(entryYear), dept.toLowerCase());</b>
+&nbsp;
+<b class="fc">&nbsp;                     }</b>
+<b class="fc">&nbsp;                     else if (workToDo == 2) {</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter name of faculty&quot;);</b>
+<b class="fc">&nbsp;                         String name = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter user name of faculty &#39;&#39;Ps - It has to be unique&#39;&#39;&quot;);</b>
+<b class="fc">&nbsp;                         String userName = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter email of faculty&quot;);</b>
+<b class="fc">&nbsp;                         String email = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter password of faculty&quot;);</b>
+<b class="fc">&nbsp;                         String password = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter mobile of faculty&quot;);</b>
+<b class="fc">&nbsp;                         String mobile = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter joining year of faculty&quot;);</b>
+<b class="fc">&nbsp;                         String entryYear = scanner.next();</b>
+<b class="fc">&nbsp;                         System.out.println(&quot;Enter Department(ee,cs,ch,me etc) of faculty&quot;);</b>
+<b class="fc">&nbsp;                         String dept = scanner.next();</b>
+<b class="fc">&nbsp;                         ad.addFaculty(name, userName.toLowerCase(), email, password, mobile, Integer.parseInt(entryYear), dept.toLowerCase());</b>
+<b class="fc">&nbsp;                     }</b>
+<b class="fc">&nbsp;                     else if (workToDo == 3) { // other works to do</b>
+&nbsp;                         while (true) {
+<b class="fc">&nbsp;                             System.out.println(&quot;\npress 1: to start new semester\npress 2 : to stop the &#39;add and drop&#39; of courses \npress 3 : to start grade submission \n press4: to end semester \npress 5: to add course in courseOffering in this semester\npress 6: to add new course in course catalog\npress 7: to make Core/mandatory Courses for a batch \npress 8 : to get grades\npress 9: to generate transcript\npress 10: Go back&quot;);</b>
+<b class="fc">&nbsp;                             int wor1 = scanner.nextInt();</b>
+<b class="fc">&nbsp;                             if (wor1 == 1) {</b>
+<b class="fc">&nbsp;                                 ad.startSemester();</b>
+<b class="fc">&nbsp;                                 System.out.println(String.format(&quot;semester %d of year %d has been started&quot;, shared.currentSemester, shared.currentYear));</b>
+<b class="fc">&nbsp;                             } else if (wor1 == 2) {</b>
+<b class="fc">&nbsp;                                 shared.addDropOpen = false;</b>
+<b class="fc">&nbsp;                                 System.out.println(String.format(&quot;Add drop for semester %d of year %d has been stopped&quot;, shared.currentSemester, shared.currentYear));</b>
+<b class="fc">&nbsp;                             } else if (wor1 == 3) {</b>
+<b class="fc">&nbsp;                                 shared.GradeSubmissionAllowed = true;</b>
+<b class="fc">&nbsp;                                 System.out.println(String.format(&quot;grade submission for semester %d of year %d has been started&quot;, shared.currentSemester, shared.currentYear));</b>
+<b class="fc">&nbsp;                             } else if (wor1 == 4) {</b>
+<b class="fc">&nbsp;                                 shared.semStarted = false;</b>
+<b class="fc">&nbsp;                                 shared.addDropOpen=false;</b>
+<b class="fc">&nbsp;                                 shared.GradeSubmissionAllowed=false;</b>
+<b class="fc">&nbsp;                                 System.out.println(String.format(&quot;semester %d of year %d has been completed&quot;, shared.currentSemester, shared.currentYear));</b>
+<b class="fc">&nbsp;                             } else if (wor1 == 5) {</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter course code&quot;);</b>
+<b class="fc">&nbsp;                                 String coursecode = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter course name&quot;);</b>
+<b class="fc">&nbsp;                                 String coursename = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;l(lecture per week)&quot;);</b>
+<b class="fc">&nbsp;                                 String l = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;t(tutorial per week)&quot;);</b>
+<b class="fc">&nbsp;                                 String t = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;p(practical hour per week)&quot;);</b>
+<b class="fc">&nbsp;                                 String p = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;c(credit)&quot;);</b>
+<b class="fc">&nbsp;                                 String c = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter name of faculty&quot;);</b>
+<b class="fc">&nbsp;                                 String facultyname = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter user name of faculty&quot;);</b>
+<b class="fc">&nbsp;                                 String facultyUsername = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter course pre requisites (like cs301,cs302)&quot;);</b>
+<b class="fc">&nbsp;                                 String courseprereq = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter cg criteria&quot;);</b>
+<b class="fc">&nbsp;                                 String cgreq = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter batches eligible (like 2021,2022)&quot;);</b>
+<b class="fc">&nbsp;                                 String batches = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter departments eligible&quot;);</b>
+<b class="fc">&nbsp;                                 String dept = scanner.next();</b>
+<b class="fc">&nbsp;                                 ad.addCourseInCourseOffering(coursecode, coursename, Integer.parseInt(l), Integer.parseInt(t), Integer.parseInt(p), Double.parseDouble(c), facultyUsername, facultyname, shared.currentYear, shared.currentSemester, courseprereq, Double.parseDouble(cgreq), batches, dept);</b>
+<b class="fc">&nbsp;                             } else if (wor1 == 6) {</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter course code&quot;);</b>
+<b class="fc">&nbsp;                                 String coursecode = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter course name&quot;);</b>
+<b class="fc">&nbsp;                                 String coursename = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;l(lecture per week)&quot;);</b>
+<b class="fc">&nbsp;                                 String l = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;t(tutorial per week)&quot;);</b>
+<b class="fc">&nbsp;                                 String t = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;p(practical hour per week)&quot;);</b>
+<b class="fc">&nbsp;                                 String p = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;c(credit)&quot;);</b>
+<b class="fc">&nbsp;                                 String c = scanner.next();</b>
+<b class="fc">&nbsp;                                 System.out.println(&quot;Enter course pre requisites (like cs301,cs302)&quot;);</b>
+<b class="fc">&nbsp;                                 String courseprereq = scanner.next();</b>
+<b class="nc">&nbsp;                                 ad.addCoursesToCourseCatalog(coursecode, coursename, Integer.parseInt(l), Integer.parseInt(t), Integer.parseInt(l), Double.parseDouble(c), courseprereq);</b>
+<b class="fc">&nbsp;                             } else if (wor1 == 7) {</b>
+<b class="nc">&nbsp;                                 ad.makeCoreCourses();</b>
+<b class="nc">&nbsp;                             } else if (wor1 == 8) {</b>
+<b class="nc">&nbsp;                                 System.out.println(&quot;enter entry no of student you want to see grade for. &quot;);</b>
+<b class="nc">&nbsp;                                 String ss = scanner.next();</b>
+<b class="nc">&nbsp;                                 ad.getGrades(ss);</b>
+<b class="nc">&nbsp;                             } else if (wor1 == 9) {</b>
+<b class="nc">&nbsp;                                 System.out.println(&quot;enter entry no of student you want to generate transcript&quot;);</b>
+<b class="nc">&nbsp;                                 String ss = scanner.next();</b>
+<b class="fc">&nbsp;                                 ad.generateTranscript(ss);</b>
+&nbsp;                             } else if (wor1 == 10) {
+<b class="nc">&nbsp;                                 break;</b>
+&nbsp;                             } else {
+<b class="fc">&nbsp;                                 System.out.println(&quot;Please try again :( &quot;);</b>
+&nbsp;                             }
+<b class="fc">&nbsp;                         }</b>
+<b class="fc">&nbsp;                     }</b>
+&nbsp;                     else if(workToDo ==4){
+&nbsp;                         break;
+<b class="nc">&nbsp;                     }</b>
+&nbsp;                     else {
+<b class="fc">&nbsp;                         System.out.println(&quot;type again ;( &quot;);</b>
+<b class="fc">&nbsp;                     }</b>
+&nbsp;                 }
+&nbsp;             }
+<b class="fc">&nbsp;         }</b>
+&nbsp;         else{
+&nbsp;             System.out.println(&quot;wrong credentials&quot;);
+&nbsp;         }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-09 17:18</div>
+</div>
+</body>
+</html>

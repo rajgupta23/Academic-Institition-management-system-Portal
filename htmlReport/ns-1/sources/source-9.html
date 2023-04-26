@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > studentTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: studentTest (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">studentTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import org.junit.jupiter.api.Test;
+&nbsp;
+&nbsp;import static org.junit.jupiter.api.Assertions.*;
+&nbsp;import static org.junit.jupiter.api.Assertions.assertEquals;
+&nbsp;
+<b class="nc">&nbsp;class studentTest {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void changeMobile() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(1,s.changeMobile(&quot;655&quot;));</b>
+&nbsp;    }
+&nbsp;    @Test
+&nbsp;    void changePassword() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(1,s.changePassword(&quot;655&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void assignStudentDetail() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(1,s.assignStudentDetail());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void getCredits() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(0.0,s.getCredits(2020,2)); // zero is required since a new student haven;t enroled for anything</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void getGradePoint() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(0,s.getGradePoint(1990,1));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void getCurrentSemCredits() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(0,s.getCurrentSemCredits());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void getCreditLimit() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(0, s.getCreditLimit());</b>
+&nbsp;    }
+&nbsp;    @Test
+&nbsp;    void showCourses() {
+<b class="nc">&nbsp;        student s = new student();</b>
+<b class="nc">&nbsp;        assertEquals(1,s.showCourses());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-09 17:18</div>
+</div>
+</body>
+</html>

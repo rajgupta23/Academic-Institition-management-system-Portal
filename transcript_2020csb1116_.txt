@@ -1,0 +1,1 @@
+courseid  |  credit  |  gradepoint | year| semsester
