@@ -1,6 +1,8 @@
 # How to run --
 1. I used intelliJ ide build script, so it would be better to have it otherwise you have to use plugins to easily run on different IDE.
 
+#Database Requiremnts
+
 
 ```sql
 create table students(name varchar(50),username varchar(50),email varchar(20),password varchar(50),mobile varchar(20),entryYear integer);
